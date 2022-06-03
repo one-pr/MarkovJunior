@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="models">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element name="model" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="name" type="xs:string" use="required">
+                            <xs:annotation>
+                                <xs:documentation>Model xml file name.
+
+File `$"models/{name}.xml"` should exist.
+</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="size" default="-1" type="xs:int" use="optional">
+                            <xs:annotation>
+                                <xs:documentation>Output Size in Pixel. default=-1
+
+Note: If `size` is not specified, then `widht` and `hight` should be specified.</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="d" default="2" use="optional">
+                            <xs:annotation>
+                                <xs:documentation>Output dimension. [2, 3] default=2</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:positiveInteger">
+                                    <xs:enumeration value="2" />
+                                    <xs:enumeration value="3" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="length" type="xs:positiveInteger" use="optional">
+                            <xs:annotation>
+                                <xs:documentation>X-axis length. default=size</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="width" type="xs:positiveInteger" use="optional">
+                            <xs:annotation>
+                                <xs:documentation>Y-axis width. default=size</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="height" type="xs:positiveInteger" use="optional">
+                            <xs:annotation>
+                                <xs:documentation>Z-axis height.
+
+2D (d==2), default=1;
+3D (d==3), default=size;
+</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="amount" default="2" type="xs:positiveInteger" use="optional">
+                            <xs:annotation>
+                                <xs:documentation>Number of output files. default=2</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="pixelsize" default="4" type="xs:positiveInteger" use="optional">
+                            <xs:annotation>
+                                <xs:documentation>Pixel point size. default=4</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="seeds" default="null" type="xs:string" use="optional">
+                            <xs:annotation>
+                                <xs:documentation>Random number seed list. default=null</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="gif" default="false" type="xs:boolean" use="optional">
+                            <xs:annotation>
+                                <xs:documentation>Whether to output gifs. default=false</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="iso" default="false" type="xs:boolean" use="optional">
+                            <xs:annotation>
+                                <xs:documentation>Whether to output in `iso` format. default=false</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="steps" default="1000" type="xs:int" use="optional">
+                            <xs:annotation>
+                                <xs:documentation>Number of rule execution steps. 
+
+GIF (gif==true), default=1000;
+Others (gif==false), default=50000;</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="gui" default="0" type="xs:nonNegativeInteger" use="optional">
+                            <xs:annotation>
+                                <xs:documentation>The width of the graphical rule sidebar in the output image. 
+default=0 (not show)</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
